@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct Commit {
+public struct Commit {
     let sha: String
     let url: String
+    
+    public init(
+        sha: String,
+        url: String
+    ) {
+        self.sha = sha
+        self.url = url
+    }
 }

@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct CommitDTO: Codable {
-    let sha: String
-    let url: String
+public struct CommitDTO: Codable {
+    public let sha: String
+    public let url: String
+    
+    public init(sha: String, url: String) {
+        self.sha = sha
+        self.url = url
+    }
 }

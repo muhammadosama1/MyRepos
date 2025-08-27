@@ -10,27 +10,44 @@ import SwiftUI
 public struct UserReposView: View {
     @State var viewModel: UserReposViewModel
     
+    public init(viewModel: UserReposViewModel) {
+        self.viewModel = viewModel
+    }
+    
     public var body: some View {
-        List {
-            ForEach(viewModel.repos, id: \.id) { repo in
-                VStack(alignment: .leading) {
-                    Text(repo.name)
-                        .font(.headline)
-                    
-                    Text(repo.description ?? "No description available")
-                        .font(.caption)
-                    
-                    Text("\(repo.stargazersCount) out of 5 stars")
-                    
-                    Text("last update at: \(repo.updatedAt)")
-                }
-                .onTapGesture {
-                    
+        NavigationStack {
+            List {
+                ForEach(viewModel.repos, id: \.id) { repo in
+                    NavigationLink(value: repo) {
+                        VStack(alignment: .leading) {
+                            Text(repo.name)
+                                .font(.headline)
+                            
+                            Text(repo.description ?? "No description available")
+                                .font(.caption)
+                            
+                            Text("\(repo.stargazersCount) out of 5 stars")
+                            
+                            Text("last update at: \(repo.updatedAt)")
+                        }
+                    }
                 }
             }
-        }
-        .task {
-            await viewModel.fetchRepos()
+            .navigationTitle("Repositories")
+            .navigationDestination(for: Repo.self) { repo in
+                RepoBranchView(
+                    viewModel: RepoBranchViewModel(
+                        getBranchesUsecase: GetUserBranchesUsecase(
+                            repo: BranchesRepo()
+                        ),
+                        userName: "muhammadosama1",
+                        repoName: repo.name
+                    )
+                )
+            }
+            .task {
+                await viewModel.fetchRepos()
+            }
         }
     }
 }

@@ -9,20 +9,20 @@ import Foundation
 
 @MainActor
 @Observable
-class UserReposViewModel {
+public class UserReposViewModel {
     private(set) var repos: [Repo] = []
     private(set) var error: String? = nil
     private(set) var viewState: ViewState<[Repo]> = .idle
     
     private let getUserReposUseCase: GetUserReposUsecaseProtocol
     
-    init(
+    public init(
         getUserReposUseCase: GetUserReposUsecaseProtocol
     ) {
         self.getUserReposUseCase = getUserReposUseCase
     }
     
-    func fetchRepos() async {
+    public func fetchRepos() async {
         do {
             repos = try await getUserReposUseCase.execute(userName: "muhammadosama1")
         } catch {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CommitDTO {
+public extension CommitDTO {
     public func mapping() -> Commit {
         return Commit(
             sha: sha,

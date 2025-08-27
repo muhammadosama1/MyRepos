@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetUserBranchesUsecaseProtocol {
+public protocol GetUserBranchesUsecaseProtocol {
     func execute(userName: String, repoName: String) async throws -> [Branch]
 }
 
-struct GetUserBranchesUsecase: GetUserBranchesUsecaseProtocol {
+public struct GetUserBranchesUsecase: GetUserBranchesUsecaseProtocol {
     let repo: BranchesRepoProtocol
     
-    init(repo: BranchesRepoProtocol) {
+    public init(repo: BranchesRepoProtocol) {
         self.repo = repo
     }
     
-    func execute(userName: String, repoName: String) async throws -> [Branch] {
+    public func execute(userName: String, repoName: String) async throws -> [Branch] {
         try await repo.getRepoBranches(userName: userName, repoName: repoName)
     }
 }

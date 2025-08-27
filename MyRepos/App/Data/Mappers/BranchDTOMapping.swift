@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension BranchDTO {
+public extension BranchDTO {
     func mapping() -> Branch {
         return Branch(
             name: name,

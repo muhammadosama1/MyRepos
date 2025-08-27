@@ -8,15 +8,15 @@
 import Foundation
 
 public struct BranchesRepo: Repository, BranchesRepoProtocol {
-    let session: URLSession
+    public let session: URLSession
     
-    init(
+    public init(
         session: URLSession = .shared
     ) {
         self.session = session
     }
     
-    func getRepoBranches(
+    public func getRepoBranches(
         userName: String,
         repoName: String
     ) async throws -> [Branch] {

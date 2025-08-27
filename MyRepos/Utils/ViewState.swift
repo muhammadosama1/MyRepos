@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ViewState<T: Sendable>: Sendable {
+public enum ViewState<T: Sendable>: Sendable {
     case idle
     case loading
     case loaded(T)
     case error(Error)
     
-    var isLoading: Bool {
+    public var isLoading: Bool {
         if case .loading = self { return true }
         return false
     }

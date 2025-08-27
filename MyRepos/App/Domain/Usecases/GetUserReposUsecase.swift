@@ -7,18 +7,18 @@
 
 import Foundation
 
-protocol GetUserReposUsecaseProtocol {
+public protocol GetUserReposUsecaseProtocol {
     func execute(userName: String) async throws -> [Repo]
 }
 
-struct GetUserReposUsecase: GetUserReposUsecaseProtocol {
+public struct GetUserReposUsecase: GetUserReposUsecaseProtocol {
     let repo: UserReposProtocol
     
-    init(repo: UserReposProtocol) {
+    public init(repo: UserReposProtocol) {
         self.repo = repo
     }
     
-    func execute(userName: String) async throws -> [Repo] {
+    public func execute(userName: String) async throws -> [Repo] {
         try await repo.getUserRepos(userName: userName)
     }
 }

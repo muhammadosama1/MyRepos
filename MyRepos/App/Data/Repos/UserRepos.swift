@@ -8,15 +8,15 @@
 import Foundation
 
 public struct UserRepos: Repository, UserReposProtocol {
-    let session: URLSession
+    public let session: URLSession
     
-    init(
+    public init(
         session: URLSession = .shared
     ) {
         self.session = session
     }
     
-    func getUserRepos(userName: String) async throws -> [Repo] {
+    public func getUserRepos(userName: String) async throws -> [Repo] {
         let url = URL(string: "\(baseURL)users/\(userName)/repos")!
         do {
             let (data, response) = try await session.data(for: URLRequest(url: url))

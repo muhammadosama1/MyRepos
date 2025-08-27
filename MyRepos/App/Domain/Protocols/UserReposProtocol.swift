@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol UserReposProtocol {
+public protocol UserReposProtocol {
     func getUserRepos(userName: String) async throws -> [Repo]
 }

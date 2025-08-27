@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol Repository {
+public protocol Repository {
     var session: URLSession { get }
     var baseURL: String { get }
 }
 
-extension Repository {
+public extension Repository {
     var baseURL: String {
         return "https://api.github.com/"
     }

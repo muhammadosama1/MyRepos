@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol BranchesRepoProtocol {
+public protocol BranchesRepoProtocol {
     func getRepoBranches(userName: String, repoName: String) async throws -> [Branch]
 }
