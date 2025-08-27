@@ -10,9 +10,20 @@ import Foundation
 @MainActor
 @Observable
 class UserReposViewModel {
-    private(set) var viewState: ViewState<[Repo]> = .idle
-    
     private let getUserReposUseCase: GetUserReposUsecaseProtocol
+    
+    private(set) var viewState: ViewState<[Repo]> = .idle
+    private(set) var repos: [Repo] = []
+    
+    var searchText = "" {
+        didSet {
+            if searchText.isEmpty {
+                viewState = .loaded(repos)
+            } else {
+                viewState = .loaded(repos.filter { $0.name.contains(searchText) })
+            }
+        }
+    }
     
     init(
         getUserReposUseCase: GetUserReposUsecaseProtocol
@@ -23,7 +34,7 @@ class UserReposViewModel {
     func fetchRepos() async {
         viewState = .loading
         do {
-            let repos = try await getUserReposUseCase.execute(userName: "muhammadosama1")
+            repos = try await getUserReposUseCase.execute(userName: "muhammadosama1")
             viewState = .loaded(repos)
         } catch {
             viewState = .error(error)

@@ -35,6 +35,7 @@ struct UserReposView: View {
                         }
                     }
                 }
+                .searchable(text: $viewModel.searchText)
                 .navigationTitle("Repositories")
                 .navigationBarTitleDisplayMode(.large)
                 .navigationDestination(for: String.self) { name in
