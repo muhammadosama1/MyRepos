@@ -11,7 +11,7 @@ import SwiftUI
 struct MyReposApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UserReposView(viewModel: UserReposViewModel(getUserReposUseCase: GetUserReposUsecase(repo: UserRepos())))
         }
     }
 }
