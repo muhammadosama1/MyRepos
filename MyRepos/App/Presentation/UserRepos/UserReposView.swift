@@ -36,10 +36,10 @@ struct UserReposView: View {
                     }
                 }
                 .navigationTitle("Repositories")
+                .navigationBarTitleDisplayMode(.large)
                 .navigationDestination(for: String.self) { name in
                     RepoBranchsView(
                         viewModel: DI.makeRepoBranchViewModel(
-                            userName: "muhammadosama1",
                             repoName: name
                         )
                     )

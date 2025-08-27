@@ -10,7 +10,6 @@ import Foundation
 @MainActor
 @Observable
 public class RepoBranchsViewModel {
-    private let userName: String
     let repoName: String
     var viewState: ViewState<[Branch]> = .idle
     
@@ -19,18 +18,16 @@ public class RepoBranchsViewModel {
     
     public init(
         getBranchesUsecase: GetUserBranchesUsecaseProtocol,
-        userName: String,
         repoName: String
     ) {
         self.getBranchesUsecase = getBranchesUsecase
-        self.userName = userName
         self.repoName = repoName
     }
     
     public func fetchBranches() async {
         viewState = .loading
         do {
-            let branches = try await getBranchesUsecase.execute(userName: userName, repoName: repoName)
+            let branches = try await getBranchesUsecase.execute(userName: "muhammadosama1", repoName: repoName)
             viewState = .loaded(branches)
         } catch {
             viewState = .error(error)

@@ -32,10 +32,9 @@ public final class DIContainer {
         UserReposViewModel(getUserReposUseCase: getUserReposUseCase)
     }
     
-    func makeRepoBranchViewModel(userName: String, repoName: String) -> RepoBranchsViewModel {
+    func makeRepoBranchViewModel(repoName: String) -> RepoBranchsViewModel {
         RepoBranchsViewModel(
             getBranchesUsecase: getUserBranchesUseCase,
-            userName: userName,
             repoName: repoName
         )
     }
