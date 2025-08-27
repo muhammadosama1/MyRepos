@@ -8,16 +8,16 @@
 import Foundation
 
 public struct Repo: Hashable {
-    public let id: Int
-    public let name, fullName: String
-    public let owner: Owner
-    public let description: String?
-    public let fork: Bool
-    public let createdAt, updatedAt, pushedAt: String
-    public let stargazersCount, watchersCount: Int
-    public let forksCount: Int
-    public let forks, openIssues, watchers: Int
-    public let defaultBranch: String
+    let id: Int
+    let name, fullName: String
+    let owner: Owner
+    let description: String?
+    let fork: Bool
+    let createdAt, updatedAt: String
+    let stargazersCount, watchersCount: Int
+    let forksCount: Int
+    let forks, openIssues, watchers: Int
+    let defaultBranch: String
     
     public init(
         id: Int,
@@ -28,7 +28,6 @@ public struct Repo: Hashable {
         fork: Bool,
         createdAt: String,
         updatedAt: String,
-        pushedAt: String,
         stargazersCount: Int,
         watchersCount: Int,
         forksCount: Int,
@@ -45,7 +44,6 @@ public struct Repo: Hashable {
         self.fork = fork
         self.createdAt = createdAt
         self.updatedAt = updatedAt
-        self.pushedAt = pushedAt
         self.stargazersCount = stargazersCount
         self.watchersCount = watchersCount
         self.forksCount = forksCount

@@ -18,7 +18,6 @@ public extension RepoDTO {
             fork: fork,
             createdAt: createdAt,
             updatedAt: updatedAt,
-            pushedAt: pushedAt,
             stargazersCount: stargazersCount,
             watchersCount: watchersCount,
             forksCount: forksCount,

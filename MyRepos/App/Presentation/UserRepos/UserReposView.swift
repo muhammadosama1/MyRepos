@@ -7,46 +7,51 @@
 
 import SwiftUI
 
-public struct UserReposView: View {
+struct UserReposView: View {
     @State var viewModel: UserReposViewModel
     
-    public init(viewModel: UserReposViewModel) {
+    init(viewModel: UserReposViewModel) {
         self.viewModel = viewModel
     }
     
-    public var body: some View {
+    var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.repos, id: \.id) { repo in
-                    NavigationLink(value: repo) {
-                        VStack(alignment: .leading) {
-                            Text(repo.name)
-                                .font(.headline)
-                            
-                            Text(repo.description ?? "No description available")
-                                .font(.caption)
-                            
-                            Text("\(repo.stargazersCount) out of 5 stars")
-                            
-                            Text("last update at: \(repo.updatedAt)")
+            switch viewModel.viewState {
+            case .loaded(let repos):
+                List {
+                    ForEach(repos, id: \.id) { repo in
+                        NavigationLink(value: repo.name) {
+                            VStack(alignment: .leading) {
+                                Text(repo.name)
+                                    .font(.headline)
+                                
+                                Text(repo.description ?? "No description available")
+                                    .font(.caption)
+                                
+                                Text("\(repo.stargazersCount) out of 5 stars")
+                                
+                                Text("last update at: \(repo.updatedAt)")
+                            }
                         }
                     }
                 }
-            }
-            .navigationTitle("Repositories")
-            .navigationDestination(for: Repo.self) { repo in
-                RepoBranchView(
-                    viewModel: RepoBranchViewModel(
-                        getBranchesUsecase: GetUserBranchesUsecase(
-                            repo: BranchesRepo()
-                        ),
-                        userName: "muhammadosama1",
-                        repoName: repo.name
+                .navigationTitle("Repositories")
+                .navigationDestination(for: String.self) { name in
+                    RepoBranchsView(
+                        viewModel: DI.makeRepoBranchViewModel(
+                            userName: "muhammadosama1",
+                            repoName: name
+                        )
                     )
-                )
-            }
-            .task {
-                await viewModel.fetchRepos()
+                }
+            case .idle, .loading:
+                ProgressView("Loading branches...")
+                    .task {
+                        await viewModel.fetchRepos()
+                    }
+            case .error(let error):
+                Text(error.localizedDescription)
+                    .font(.headline)
             }
         }
     }

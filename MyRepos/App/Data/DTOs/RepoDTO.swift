@@ -8,52 +8,16 @@
 import Foundation
 
 public struct RepoDTO: Codable {
-    public let id: Int
-    public let name, fullName: String
-    public let owner: OwnerDTO
-    public let description: String?
-    public let fork: Bool
-    public let createdAt, updatedAt, pushedAt: String
-    public let stargazersCount, watchersCount: Int
-    public let forksCount: Int
-    public let forks, openIssues, watchers: Int
-    public let defaultBranch: String
-
-    public init(
-        id: Int,
-        name: String,
-        fullName: String,
-        owner: OwnerDTO,
-        description: String?,
-        fork: Bool,
-        createdAt: String,
-        updatedAt: String,
-        pushedAt: String,
-        stargazersCount: Int,
-        watchersCount: Int,
-        forksCount: Int,
-        forks: Int,
-        openIssues: Int,
-        watchers: Int,
-        defaultBranch: String
-    ) {
-        self.id = id
-        self.name = name
-        self.fullName = fullName
-        self.owner = owner
-        self.description = description
-        self.fork = fork
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
-        self.pushedAt = pushedAt
-        self.stargazersCount = stargazersCount
-        self.watchersCount = watchersCount
-        self.forksCount = forksCount
-        self.forks = forks
-        self.openIssues = openIssues
-        self.watchers = watchers
-        self.defaultBranch = defaultBranch
-    }
+    let id: Int
+    let name, fullName: String
+    let owner: OwnerDTO
+    let description: String?
+    let fork: Bool
+    let createdAt, updatedAt: String
+    let stargazersCount, watchersCount: Int
+    let forksCount: Int
+    let forks, openIssues, watchers: Int
+    let defaultBranch: String
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -63,7 +27,6 @@ public struct RepoDTO: Codable {
         case description, fork
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case pushedAt = "pushed_at"
         case stargazersCount = "stargazers_count"
         case watchersCount = "watchers_count"
         case forksCount = "forks_count"
@@ -71,6 +34,5 @@ public struct RepoDTO: Codable {
         case openIssues = "open_issues"
         case watchers
         case defaultBranch = "default_branch"
-        
     }
 }
