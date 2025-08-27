@@ -29,22 +29,9 @@
 		187428362E5F439600558933 /* MyReposUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyReposUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		1874288C2E5F5F9F00558933 /* Exceptions for "MyRepos" folder in "MyRepos" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				App/Domain/Protocols/Untitled.swift,
-			);
-			target = 1874281E2E5F439400558933 /* MyRepos */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		187428212E5F439400558933 /* MyRepos */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				1874288C2E5F5F9F00558933 /* Exceptions for "MyRepos" folder in "MyRepos" target */,
-			);
 			path = MyRepos;
 			sourceTree = "<group>";
 		};

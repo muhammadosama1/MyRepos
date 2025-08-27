@@ -7,22 +7,19 @@
 
 import Foundation
 
-public struct BranchesRepo: Repository {
+public struct BranchesRepo: Repository, BranchesRepoProtocol {
     let session: URLSession
-    let userName: String
-    let repoName: String
     
     init(
-        session: URLSession = .shared,
-        userName: String = "muhammadosama1",
-        repoName: String = "MorningNews"
+        session: URLSession = .shared
     ) {
         self.session = session
-        self.userName = userName
-        self.repoName = repoName
     }
     
-    func getRepoBranches() async throws -> [Branch] {
+    func getRepoBranches(
+        userName: String,
+        repoName: String
+    ) async throws -> [Branch] {
         let url = URL(string: "\(baseURL)repos/\(userName)/\(repoName)/branches")!
         do {
             let (data, response) = try await session.data(for: URLRequest(url: url))
